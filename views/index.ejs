@@ -1,0 +1,31 @@
+<%- include('partials/header') %>
+
+<h1>Data Encryption Standard</h1>
+
+<form action="/des" method="POST">
+
+    <label for="des[rounds]">Number of Rounds: </label>
+    <select class="form-control" name="des[rounds]">
+        <option>1</option>
+        <option>8</option>
+        <option selected>16</option>
+        <option>32</option>
+    </select>
+    
+    <label for="des[halfwidth]">Half Width: </label>
+    <select class="form-control" name="des[halfwidth]" id="halfwidth">
+        <option>16</option>
+        <option selected>32</option>
+        <option>64</option>
+    </select>
+
+    <label for="des[key]">Key</label>
+    <input type="text" name="des[key]">
+
+    <label for="des[ptxt]">Plaintext</label>
+    <input type="text" name="des[ptxt]" id="">
+    
+    <button type="submit">Encipher</button>
+</form>
+
+<%- include('partials/footer') %>
