@@ -1,0 +1,16 @@
+.table-container{
+    width: 500px;
+    /* margin: 0 auto; */
+}
+
+.allign-center{
+    text-align: center;
+}
+
+.border{
+    border: 1px solid #DCDCDC;
+}
+
+.display-inline{
+    display: inline-block;
+}

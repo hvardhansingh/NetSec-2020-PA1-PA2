@@ -1,0 +1,62 @@
+<%- include('../partials/header') %>
+
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Decryption Result</h1>
+            <p>
+                <h4><mark>Plaintext: <%= des.ptxt %></mark></h4>
+            </p>
+            <p>
+                <h4>Key: <%= des.key %></h4>
+            </p>
+            <p>
+                <h4>Ciphertext: <%= des.ctxt%></h4>
+            </p>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-6">
+                <div class="table-container">
+                    <table class="table table-striped border">
+                        <thead>
+                            <tr>
+                                <th scope="col">Round Number</th>
+                                <th scope="col">Subkey</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for(var i=0; i< 8; i++){ %>
+                                <tr>
+                                    <td>Round <%= i+1%> </td>
+                                    <td><%= des.subkeys[i]%></td>
+                                </tr>
+                            <% }; %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="table-container" style="float: right;">
+                    <table class="table table-striped border">
+                        <thead>
+                            <tr>
+                                <th scope="col">Round Number</th>
+                                <th scope="col">Subkey</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for(var i=8; i< 16; i++){ %>
+                                <tr>
+                                    <td>Round <%= i+1%> </td>
+                                    <td><%= des.subkeys[i]%></td>
+                                </tr>
+                            <% }; %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<%- include('../partials/footer') %>
