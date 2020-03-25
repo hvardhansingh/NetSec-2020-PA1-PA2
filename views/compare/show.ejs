@@ -1,12 +1,119 @@
-<h4>
-    <%= des.ctxt1%>
-</h4>
+<%- include('../partials/header')%>
+    <% console.log(des.delta); %>
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Avalanche Effect Demo</h1>
+            <br>
 
-<h4>
-    <%= des.ctxt2%>
-</h4>
+            <% if(des.ptxt1){ %>
+                <h4>Plaintext 1: <%= des.ptxt1 %></h4>
+            <% } %>
+            <% if(des.ptxt2){ %>
+                <h4>Plaintext 2: <%= des.ptxt2 %></h4>  
+            <% } %>
+            <% if(des.ptxt){ %>
+                <h4>Plaintext: <%= des.ptxt %></h4>  
+            <% } %>
 
-<h4>
-    <%= des.delta%>
-</h4>
+            <% if(des.key1){ %>
+                <h4>Key1: <%= des.key1 %></h4>
+            <% } %>
+            <% if(des.key2){ %>
+                <h4>Key2: <%= des.key2 %></h4>  
+            <% } %>
+            <% if(des.key){ %>
+                <h4>Key: <%= des.key %></h4>  
+            <% } %>
+           
+            <h4><mark>Ciphertext 1: <%= des.ctxt1%></mark></h4>
+            <h4><mark>Ciphertext 2: <%= des.ctxt2%></mark></h4>
+            <br>
+            <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+        </div>
 
+        <div class="row">
+            <div class="col-md-6">
+                <div class="table-container">
+                    <table class="table table-striped border">
+                        <thead>
+                            <tr>
+                                <th scope="col">Round Number</th>
+                                <th scope="col">Ciphertexts</th>
+                                <th scope="col">Delta</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for(var i=1; i<= Math.floor((des.delta.length)/2); i++){ %>
+                                <tr>
+                                    <td>Round <%= i%> </td>
+                                    <td>
+                                        <p>
+                                            <%= des.round1[i]%>
+                                        </p>
+                                        <p>
+                                            <%= des.round2[i]%>
+                                        </p>
+                                    </td>
+                                    <td> <%= des.delta[i].y %> </td>
+                                </tr>
+                            <% }; %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="table-container" style="float: right;">
+                    <table class="table table-striped border">
+                        <thead>
+                            <tr>
+                                <th scope="col">Round Number</th>
+                                <th scope="col">Ciphertexts</th>
+                                <th scope="col">Delta</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for(var i=Math.floor((des.delta.length)/2)+1; i< (des.delta.length); i++){ %>
+                                <tr>
+                                    <td>Round <%= i%> </td>
+                                    <td>
+                                        <p>
+                                            <%= des.round1[i]%>
+                                        </p>
+                                        <p>
+                                            <%= des.round2[i]%>
+                                        </p>
+                                    </td>
+                                    <td><%= des.delta[i].y %></td>
+                                </tr>
+                            <% }; %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script>
+
+        var e = <%- JSON.stringify(des) %>;
+        var chart = new CanvasJS.Chart("chartContainer", {
+            animationEnabled: true,
+            theme: "light2",
+            title: {
+                text: "Avalanche Demo"
+            },
+            axisY: {
+                includeZero: false
+            },
+            data: [{
+                type: "line",
+                indexLabelFontSize: 16,
+                dataPoints: e.delta
+            }]
+        });
+        chart.render();
+    </script>
+
+<%- include('../partials/footer')%>

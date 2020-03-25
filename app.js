@@ -138,7 +138,11 @@ app.post('/des/compare/key', function(req, res){
         for(var j=0; j<xr.length; j++){
             if(xr[j]==="1") popCnt++;
         }
-        delta.push(popCnt);
+        var obj = {
+            x: i+1,
+            y: popCnt
+        };
+        delta.push(obj);
     }
 
     var obj = {
@@ -199,7 +203,11 @@ app.post('/des/compare/plaintext', function(req, res){
         for(var j=0; j<xr.length; j++){
             if(xr[j]==="1") popCnt++;
         }
-        delta.push(popCnt);
+        var obj = {
+            x: i+1,
+            y: popCnt
+        };
+        delta.push(obj);
     }
 
     var obj = {
@@ -216,6 +224,6 @@ app.post('/des/compare/plaintext', function(req, res){
     res.render('compare/show', {des: obj});
 });
 
-app.listen(3001, function(){
-    console.log('Serving at port 3001');
+app.listen(3000, function(){
+    console.log('Serving at port 3000');
 });
