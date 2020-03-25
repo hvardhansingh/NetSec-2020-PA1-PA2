@@ -25,7 +25,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <% for(var i=0; i< 8; i++){ %>
+                            <% for(var i=0; i< Math.floor((des.subkeys.length)/2); i++){ %>
                                 <tr>
                                     <td>Round <%= i+1%> </td>
                                     <td><%= des.subkeys[i]%></td>
@@ -46,7 +46,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <% for(var i=8; i< 16; i++){ %>
+                            <% for(var i=Math.floor((des.subkeys.length)/2); i< (des.subkeys.length); i++){ %>
                                 <tr>
                                     <td>Round <%= i+1%> </td>
                                     <td><%= des.subkeys[i]%></td>

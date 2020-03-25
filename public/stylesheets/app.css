@@ -3,6 +3,10 @@
     /* margin: 0 auto; */
 }
 
+.container{
+    margin-bottom: 50px;
+}
+
 .allign-center{
     text-align: center;
 }
@@ -14,3 +18,17 @@
 .display-inline{
     display: inline-block;
 }
+
+.btn-container{
+    width: 500px;
+    margin: 0 auto;
+}
+
+#key{
+    display: none;
+}
+
+#ptxt{
+    display: none;
+}
+
