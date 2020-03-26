@@ -2,33 +2,35 @@
     <% console.log(des.delta); %>
     <div class="container">
         <div class="jumbotron">
-            <h1>Avalanche Effect Demo</h1>
-            <br>
+            <div class="container">
+                <h1>Avalanche Effect Demo</h1>
+                <br>
 
-            <% if(des.ptxt1){ %>
-                <h4>Plaintext 1: <%= des.ptxt1 %></h4>
-            <% } %>
-            <% if(des.ptxt2){ %>
-                <h4>Plaintext 2: <%= des.ptxt2 %></h4>  
-            <% } %>
-            <% if(des.ptxt){ %>
-                <h4>Plaintext: <%= des.ptxt %></h4>  
-            <% } %>
+                <% if(des.ptxt1){ %>
+                    <h4>Plaintext 1: <%= des.ptxt1 %></h4>
+                <% } %>
+                <% if(des.ptxt2){ %>
+                    <h4>Plaintext 2: <%= des.ptxt2 %></h4>  
+                <% } %>
+                <% if(des.ptxt){ %>
+                    <h4>Plaintext: <%= des.ptxt %></h4>  
+                <% } %>
 
-            <% if(des.key1){ %>
-                <h4>Key1: <%= des.key1 %></h4>
-            <% } %>
-            <% if(des.key2){ %>
-                <h4>Key2: <%= des.key2 %></h4>  
-            <% } %>
-            <% if(des.key){ %>
-                <h4>Key: <%= des.key %></h4>  
-            <% } %>
-           
-            <h4><mark>Ciphertext 1: <%= des.ctxt1%></mark></h4>
-            <h4><mark>Ciphertext 2: <%= des.ctxt2%></mark></h4>
-            <br>
-            <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+                <% if(des.key1){ %>
+                    <h4>Key1: <%= des.key1 %></h4>
+                <% } %>
+                <% if(des.key2){ %>
+                    <h4>Key2: <%= des.key2 %></h4>  
+                <% } %>
+                <% if(des.key){ %>
+                    <h4>Key: <%= des.key %></h4>  
+                <% } %>
+            
+                <h4><mark>Ciphertext 1: <%= des.ctxt1%></mark></h4>
+                <h4><mark>Ciphertext 2: <%= des.ctxt2%></mark></h4>
+                <br>
+                <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+            </div>
         </div>
 
         <div class="row">

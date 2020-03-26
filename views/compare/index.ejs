@@ -2,105 +2,113 @@
 
 <div class="container">
     <div class="jumbotron">
-        <h2>Do you want to use different keys or different plaintexts to see Avalanche Effect ?</h2>
-        <br> 
-        <div class="btn-container">
-            <button class="btn btn-primary btn-lg" id="diffKey">Use different keys</button>
-            <button class="btn btn-primary btn-lg" id="diffPtxt" style="float: right;">Use different plaintexts</button>
-        </div>   
+        <div class="container">
+            <h2>Do you want to use different keys or different plaintexts to see Avalanche Effect ?</h2>
+            <br>
+            <div>
+                <button class="btn btn-primary btn-lg" id="diffKey">Use different keys</button>
+                <button class="btn btn-primary btn-lg" id="diffPtxt">Use different plaintexts</button>
+            </div>
+        </div>
     </div>
 
     <div id="key">
-        
-            <form action="/des/compare/key" method="POST">
-                <div class="form-group">
-                    <label for="des[rounds]">Number of Rounds: </label>
-                    <select class="form-control" name="des[rounds]">
-                        <option>1</option>
-                        <option>8</option>
-                        <option selected>16</option>
-                        <option>32</option>
-                    </select>
-                </div>
-    
-                <div class="form-group">    
-                    <label for="des[halfwidth]">Half Width: </label>
-                    <select class="form-control" name="des[halfwidth]">
-                        <option>16</option>
-                        <option selected>32</option>
-                        <option>64</option>
-                    </select>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="des[key1]">Key1</label>
-                            <input type="text" class="form-control" name="des[key1]" placeholder="Enter first key" value="0F1571C947D9E859">
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="des[key2]">Key2</label>
-                            <input type="text" class="form-control" name="des[key2]" placeholder="Enter second key" value="1F1571C947D9E859">
-                        </div>
+
+        <form action="/des/compare/key" method="POST">
+            <div class="form-group">
+                <label for="des[rounds]">Number of Rounds: </label>
+                <select class="form-control" name="des[rounds]">
+                    <option>1</option>
+                    <option>8</option>
+                    <option selected>16</option>
+                    <option>32</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="des[halfwidth]">Half Width: </label>
+                <select class="form-control" name="des[halfwidth]">
+                    <option>16</option>
+                    <option selected>32</option>
+                    <option>64</option>
+                </select>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="des[key1]">Key1</label>
+                        <input type="text" class="form-control" name="des[key1]" placeholder="Enter first key"
+                            value="0F1571C947D9E859">
                     </div>
                 </div>
-                
-                <div class="form-group">
-                    <label for="des[ptxt]">Plaintext</label>
-                    <textarea class="form-control" name="des[ptxt]" rows="5" placeholder="Enter plaintext">02468ACEECA86420</textarea>
-                    <!-- <input class="form-control" type="text" name="des[ptxt]" id=""> -->
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="des[key2]">Key2</label>
+                        <input type="text" class="form-control" name="des[key2]" placeholder="Enter second key"
+                            value="1F1571C947D9E859">
+                    </div>
                 </div>
-                <button class="btn btn-success" type="submit">Compare</button>
-            </form>
-        
+            </div>
+
+            <div class="form-group">
+                <label for="des[ptxt]">Plaintext</label>
+                <textarea class="form-control" name="des[ptxt]" rows="5"
+                    placeholder="Enter plaintext">02468ACEECA86420</textarea>
+                <!-- <input class="form-control" type="text" name="des[ptxt]" id=""> -->
+            </div>
+            <button class="btn btn-success" type="submit">Compare</button>
+        </form>
+
     </div>
 
-    <div id="ptxt"> 
-            <form action="/des/compare/plaintext" method="POST">
-                <div class="form-group">
-                    <label for="des[rounds]">Number of Rounds: </label>
-                    <select class="form-control" name="des[rounds]">
-                        <option>1</option>
-                        <option>8</option>
-                        <option selected>16</option>
-                        <option>32</option>
-                    </select>
-                </div>
-    
-                <div class="form-group">    
-                    <label for="des[halfwidth]">Half Width: </label>
-                    <select class="form-control" name="des[halfwidth]">
-                        <option>16</option>
-                        <option selected>32</option>
-                        <option>64</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="des[key]">Key</label>
-                    <input type="text" class="form-control" name="des[key]" placeholder="Enter key" value="0F1571C947D9E859">
-                </div>
+    <div id="ptxt">
+        <form action="/des/compare/plaintext" method="POST">
+            <div class="form-group">
+                <label for="des[rounds]">Number of Rounds: </label>
+                <select class="form-control" name="des[rounds]">
+                    <option>1</option>
+                    <option>8</option>
+                    <option selected>16</option>
+                    <option>32</option>
+                </select>
+            </div>
 
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="des[ptxt1]">Plaintext 1</label>
-                            <textarea class="form-control" name="des[ptxt1]" rows="5" placeholder="Enter Plaintext 1">02468ACEECA86420</textarea>
-                            <!-- <input class="form-control" type="text" name="des[ptxt]" id=""> -->
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="des[ptxt2]">Plaintext 2</label>
-                            <textarea class="form-control" name="des[ptxt2]" rows="5" placeholder="Enter Plaintext 2">12468ACEECA86420</textarea>
-                            <!-- <input class="form-control" type="text" name="des[ptxt]" id=""> -->
-                        </div>
+            <div class="form-group">
+                <label for="des[halfwidth]">Half Width: </label>
+                <select class="form-control" name="des[halfwidth]">
+                    <option>16</option>
+                    <option selected>32</option>
+                    <option>64</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="des[key]">Key</label>
+                <input type="text" class="form-control" name="des[key]" placeholder="Enter key"
+                    value="0F1571C947D9E859">
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="des[ptxt1]">Plaintext 1</label>
+                        <textarea class="form-control" name="des[ptxt1]" rows="5"
+                            placeholder="Enter Plaintext 1">02468ACEECA86420</textarea>
+                        <!-- <input class="form-control" type="text" name="des[ptxt]" id=""> -->
                     </div>
                 </div>
-            
-                <button class="btn btn-success" type="submit">Compare</button>
-            </form>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="des[ptxt2]">Plaintext 2</label>
+                        <textarea class="form-control" name="des[ptxt2]" rows="5"
+                            placeholder="Enter Plaintext 2">12468ACEECA86420</textarea>
+                        <!-- <input class="form-control" type="text" name="des[ptxt]" id=""> -->
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn btn-success" type="submit">Compare</button>
+        </form>
     </div>
 
 </div>

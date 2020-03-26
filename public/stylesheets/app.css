@@ -1,5 +1,5 @@
 .table-container{
-    width: 500px;
+    width: 100%;
     /* margin: 0 auto; */
 }
 
@@ -20,12 +20,16 @@
 }
 
 .btn-container{
-    width: 500px;
+    width: 50%;
     margin: 0 auto;
 }
 
 #key{
     display: none;
+}
+
+.thumbnail{
+    padding: 10px;
 }
 
 #ptxt{

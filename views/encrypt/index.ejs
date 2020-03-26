@@ -2,40 +2,40 @@
 
 <div class="container">
     <div class="jumbotron">
-        <h1 style="text-align: center;" >Encipher</h1>
+        <div class="container">
+            <h1 style="text-align: center;">Encipher</h1>
+            <form action="/des/encipher" method="POST">
+                <div class="form-group">
+                    <label for="des[rounds]">Number of Rounds: </label>
+                    <select class="form-control" name="des[rounds]">
+                        <option>1</option>
+                        <option>8</option>
+                        <option selected>16</option>
+                        <option>32</option>
+                    </select>
+                </div>
 
-        <form action="/des/encipher" method="POST">
-            <div class="form-group">
-                <label for="des[rounds]">Number of Rounds: </label>
-                <select class="form-control" name="des[rounds]">
-                    <option>1</option>
-                    <option>8</option>
-                    <option selected>16</option>
-                    <option>32</option>
-                </select>
-            </div>
+                <div class="form-group">
+                    <label for="des[halfwidth]">Half Width: </label>
+                    <select class="form-control" name="des[halfwidth]" id="halfwidth">
+                        <option>16</option>
+                        <option selected>32</option>
+                        <option>64</option>
+                    </select>
+                </div>
 
-            <div class="form-group">    
-                <label for="des[halfwidth]">Half Width: </label>
-                <select class="form-control" name="des[halfwidth]" id="halfwidth">
-                    <option>16</option>
-                    <option selected>32</option>
-                    <option>64</option>
-                </select>
-            </div>
-            
-            <div class="form-group">
-                <label for="des[key]">Key</label>
-                <input type="text" class="form-control" name="des[key]" value="0F1571C947D9E859">
-            </div>
-        
-            <div class="form-group">
-                <label for="des[ptxt]">Plaintext</label>
-                <input class="form-control" type="text" name="des[ptxt]" value="02468ACEECA86420">
-            </div>
-            <button class="btn btn-success" type="submit">Encipher</button>
-        </form>
+                <div class="form-group">
+                    <label for="des[key]">Key</label>
+                    <input type="text" class="form-control" name="des[key]" value="0F1571C947D9E859">
+                </div>
 
+                <div class="form-group">
+                    <label for="des[ptxt]">Plaintext</label>
+                    <input class="form-control" type="text" name="des[ptxt]" value="02468ACEECA86420">
+                </div>
+                <button class="btn btn-success" type="submit">Encipher</button>
+            </form>
+        </div>
     </div>
 </div>
 
