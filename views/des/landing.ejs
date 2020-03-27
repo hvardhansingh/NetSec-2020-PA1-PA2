@@ -1,0 +1,55 @@
+<%- include('../partials/header') %>
+
+<div class="container">
+    <div class="jumbotron">
+        <div class="container">
+            <h1>Data Encryption Algorithm</h1>
+            <p>
+                A symmetric-key algorithm for the encryption of digital data.
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4" >
+            <div class="thumbnail" style="background-color: rgba(235, 154, 154, 0.288)">
+                <h2 style="text-align: center;">Encryption</h2>
+                <br>
+                <h4>
+                    Encrypt your data using DEA. You can choose the number of rounds, half width and key to be used
+                    for encryption.
+                </h4>
+                <br>
+                <a href="/des/encipher" class="btn btn-primary">Encrypt</a>
+            </div>
+
+        </div>
+        <div class="col-md-4">
+            <div class="thumbnail" style="background-color: rgba(129, 216, 129, 0.233);">
+                <h2 style="text-align: center;">Decryption</h2>
+                <br>
+                <h4>
+                    Decrypt the encrypted data using DEA. Choose the number of rounds, half width and key to be used
+                    for decryption.
+                </h4>
+                <br>
+                <a href="/des/decipher" class="btn btn-primary">Decrypt</a>
+            </div>
+
+        </div>
+        <div class="col-md-4">
+
+            <div class="thumbnail" style="background-color: rgba(233, 233, 140, 0.281);">
+                <h2 style="text-align: center;">Avalanche Effect</h2>
+                <br>
+                <h4>
+                    See the effect of slight change in key/plaintext on the ciphertext. Click on the button below to see Avalanche Effect.
+                </h4>
+                <br>
+                <a href="/des/compare" class="btn btn-primary">See Demo</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('../partials/footer') %>

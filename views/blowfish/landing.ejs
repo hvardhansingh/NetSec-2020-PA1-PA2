@@ -1,11 +1,11 @@
-<%- include('partials/header') %>
+<%- include('../partials/header') %>
 
 <div class="container">
     <div class="jumbotron">
         <div class="container">
-            <h1>Data Encryption Algorithm</h1>
+            <h1>Blowfish Encryption Algorithm</h1>
             <p>
-                A symmetric-key algorithm for the encryption of digital data.
+                A symmetric block cipher that can be used as a drop-in replacement for DES. Blowfish was designed in 1993 by Bruce Schneier as a fast, free alternative to existing encryption algorithms.
             </p>
         </div>
     </div>
@@ -16,11 +16,10 @@
                 <h2 style="text-align: center;">Encryption</h2>
                 <br>
                 <h4>
-                    Encrypt your data using DEA. You can choose the number of rounds, half width and key to be used
-                    for encryption.
+                    Encrypt your data using Blowfish. You can choose the number of rounds and key to be used for encryption.
                 </h4>
                 <br>
-                <a href="/des/encipher" class="btn btn-primary">Encrypt</a>
+                <a href="/blowfish/encipher" class="btn btn-primary">Encrypt</a>
             </div>
 
         </div>
@@ -29,11 +28,10 @@
                 <h2 style="text-align: center;">Decryption</h2>
                 <br>
                 <h4>
-                    Decrypt the encrypted data using DEA. Choose the number of rounds, half width and key to be used
-                    for decryption.
+                    Decrypt the encrypted data using Blowfish. Choose the number of rounds and key to be used for decryption.
                 </h4>
                 <br>
-                <a href="/des/decipher" class="btn btn-primary">Decrypt</a>
+                <a href="/blowfish/decipher" class="btn btn-primary">Decrypt</a>
             </div>
 
         </div>
@@ -52,4 +50,4 @@
     </div>
 </div>
 
-<%- include('partials/footer') %>
+<%- include('../partials/footer') %>

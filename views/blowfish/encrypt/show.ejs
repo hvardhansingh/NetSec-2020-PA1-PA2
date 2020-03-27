@@ -1,0 +1,64 @@
+<%- include('../../partials/header') %>
+
+    <div class="container">
+        <div class="jumbotron">
+            <div class="container">
+                <h1>Encryption Result</h1>
+                <p>
+                    <h4>Plaintext: <%= blowfish.plaintext %></h4>
+                </p>
+                <p>
+                    <h4>Key: <%= blowfish.key %></h4>
+                </p>
+                <p>
+                    <h4><mark>Ciphertext: <%= blowfish.ciphertext%></mark></h4>
+                </p>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-6">
+                <div class="table-container">
+                    <table class="table table-striped border">
+                        <thead>
+                            <tr>
+                                <th scope="col">Round Number</th>
+                                <th scope="col">Subkey</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for(var i=0; i< Math.floor((blowfish.subkeys.length)/2); i++){ %>
+                                <tr>
+                                    <td>Round <%= i+1%> </td>
+                                    <td><%= blowfish.subkeys[i]%></td>
+                                </tr>
+                            <% }; %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="table-container" style="float: right;">
+                    <table class="table table-striped border">
+                        <thead>
+                            <tr>
+                                <th scope="col">Round Number</th>
+                                <th scope="col">Subkey</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for(var i=Math.floor((blowfish.subkeys.length)/2); i< (blowfish.subkeys.length); i++){ %>
+                                <tr>
+                                    <td>Round <%= i+1%> </td>
+                                    <td><%= blowfish.subkeys[i]%></td>
+                                </tr>
+                            <% }; %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<%- include('../../partials/footer') %>
