@@ -224,7 +224,7 @@ app.post('/des/compare/plaintext', function(req, res){
     res.render('compare/show', {des: obj});
 });
 
-// app.listen(3000, function(){
-//     console.log('Serving at port 3000 !');
-// });
-app.listen(process.env.PORT,process.env.IP);
+app.listen(3000, function(){
+    console.log('Serving at port 3000 !');
+});
+// app.listen(process.env.PORT,process.env.IP);
