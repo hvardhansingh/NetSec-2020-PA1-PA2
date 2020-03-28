@@ -83,7 +83,7 @@ function F(block) {          // coded for half width = 32
     return out;
 }
 
-function blowfish(block, subkeys, flg) {
+function blowfish(block, key, flg) {
 
     var n = 16;
     var cipher = "";
@@ -91,6 +91,12 @@ function blowfish(block, subkeys, flg) {
     var b = block.length;
     var leftHalf = block.substring(0, b / 2);
     var rightHalf = block.substring(b / 2, b);
+
+    var subkeys = keyGeneration.generateSubkeys(key);
+
+    for (var i = 0; i < subkeys.length; i++) {
+        subkeys[i] = init.hex2bin(subkeys[i]);
+    }
 
     if(flg===true){
         subkeys.reverse();
@@ -123,13 +129,7 @@ function blowfish(block, subkeys, flg) {
 function cbcEncryption(plaintext, key){
 
     plaintext = init.hex2bin(plaintext);
-    blocks = makeBlocks(plaintext, 32); 
-
-    subkeys = keyGeneration.generateSubkeys(key);
-
-    for (var i = 0; i < subkeys.length; i++) {
-        subkeys[i] = init.hex2bin(subkeys[i]);
-    }
+    var blocks = makeBlocks(plaintext, 32); 
 
     var IV = init.hex2bin(init.IV); 
     
@@ -137,6 +137,7 @@ function cbcEncryption(plaintext, key){
     var cipher = "";
 
     blocks.forEach(function(block){
+        
         if(prev.length>0){
             block = xor(block, prev);
         }
@@ -144,7 +145,7 @@ function cbcEncryption(plaintext, key){
             block = xor(block, IV);
         }
 
-        prev = blowfish(block, subkeys, false);
+        prev = blowfish(block, key, false);
         cipher+= init.bin2hex(prev);
     });
 
@@ -154,13 +155,7 @@ function cbcEncryption(plaintext, key){
 function cbcDecryption(ciphertext, key){
 
     ciphertext = init.hex2bin(ciphertext);
-    blocks = makeBlocks(ciphertext, 32); 
-
-    subkeys = keyGeneration.generateSubkeys(key);
-
-    for (var i = 0; i < subkeys.length; i++) {
-        subkeys[i] = init.hex2bin(subkeys[i]);
-    }
+    var blocks = makeBlocks(ciphertext, 32); 
 
     var IV = init.hex2bin(init.IV); 
     
@@ -168,8 +163,8 @@ function cbcDecryption(ciphertext, key){
     var ptxt = "";
 
     blocks.forEach(function(block){
-
-        var res = blowfish(block, subkeys, true);
+    
+        var res = blowfish(block, key, true);
         if(prev.length>0){
             res = xor(res, prev);
         }
@@ -183,23 +178,30 @@ function cbcDecryption(ciphertext, key){
     return ptxt;
 }
 
+function ofbEncryption(plaintext, key){
+
+}
+
+function ofbDecryption(ciphertext, key){
+    
+}
+
 function encipher(plaintext, key, mode){
 
     if(mode==='cbc'){
         return cbcEncryption(plaintext, key);
     }
     else if(mode==='ofb'){
-
+        return ofbEncryption(plaintext, key);
     }
 }
 
 function decipher(ciphertext, key, mode){
-    // return encrypt(ciphertext, key, true);
     if(mode==='cbc'){
         return cbcDecryption(ciphertext, key);
     }
     else if(mode==='ofb'){
-
+        return ofbDecryption(ciphertext, key);
     }
 }
 
