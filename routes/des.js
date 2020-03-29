@@ -19,6 +19,8 @@ router.post('/des/encipher', function(req, res){
     var key = req.body.des.key;
     var ptxt = req.body.des.ptxt;
 
+    init.padding = 0;
+
     ptxt = encrypt.hex2bin(ptxt);
     key = encrypt.hex2bin(key).substring(0,2*(Number(w)));
     var blocks = encrypt.makeBlocks(ptxt, w);
@@ -67,12 +69,15 @@ router.post('/des/decipher', function(req, res){
 
     var dec = "";
     blocks.forEach(function(block){
-        dec+= encrypt.bin2hex(encrypt.encipher(block,subkeys,w,n));
+        dec+= encrypt.encipher(block,subkeys,w,n);
     });
 
     for(var i=0; i<subkeys.length; i++){
         subkeys[i] = encrypt.bin2hex(subkeys[i]);
     }
+
+    dec = dec.substring(0, dec.length-init.padding);
+    dec = encrypt.bin2hex(dec);
 
     var des = {
         key: encrypt.bin2hex(key),

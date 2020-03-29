@@ -99,7 +99,7 @@ module.exports = {
                     str+= "0";
                 }
                 ret.push(str);
-                padding = diff;
+                init.padding = diff;
             }
         }
         return ret;
