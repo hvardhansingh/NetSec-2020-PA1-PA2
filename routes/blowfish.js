@@ -23,6 +23,8 @@ router.post('/blowfish/encipher', function(req, res){
     var plaintext = req.body.blowfish.ptxt;
     var mode = req.body.blowfish.mode;
 
+    init.padding = 0;
+
     var subkeys = kg.generateSubkeys(key);
     var ciphertext = encrypt.encipher(plaintext, key, mode);
 

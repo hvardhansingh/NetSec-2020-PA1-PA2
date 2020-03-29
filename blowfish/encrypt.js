@@ -172,13 +172,16 @@ function cbcDecryption(ciphertext, key){
             res = xor(res, IV);
         }
         prev = block;
-        ptxt+= init.bin2hex(res);
+        ptxt+= res;
     });
+
+    ptxt = ptxt.substring(0, ptxt.length-init.padding);
+    ptxt = init.bin2hex(ptxt);
 
     return ptxt;
 }
 
-function ofb(plaintext, key){
+function ofb(plaintext, key, flg){
     var s = 8;
     var b = 64;
 
@@ -200,6 +203,12 @@ function ofb(plaintext, key){
         prev = res.substring(0,s);
         cipher+= init.bin2hex(xor(prev, block));
     });
+
+    if(flg){
+        cipher = cipher.substring(0, cipher.length-init.padding);
+        cipher = init.bin2hex(cipher);
+    }
+
     return cipher;
 }
 
@@ -209,7 +218,7 @@ function encipher(plaintext, key, mode){
         return cbcEncryption(plaintext, key);
     }
     else if(mode==='ofb'){
-        return ofb(plaintext, key);
+        return ofb(plaintext, key, false);
     }
 }
 
@@ -218,7 +227,7 @@ function decipher(ciphertext, key, mode){
         return cbcDecryption(ciphertext, key);
     }
     else if(mode==='ofb'){
-        return ofb(ciphertext, key);
+        return ofb(ciphertext, key, true);
     }
 }
 
