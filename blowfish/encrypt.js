@@ -178,12 +178,29 @@ function cbcDecryption(ciphertext, key){
     return ptxt;
 }
 
-function ofbEncryption(plaintext, key){
+function ofb(plaintext, key){
+    var s = 8;
+    var b = 64;
 
-}
+    plaintext = init.hex2bin(plaintext);
+    var blocks = makeBlocks(plaintext, 4); 
+    var IV = init.hex2bin(init.IV); 
+    var shiftReg = IV;
 
-function ofbDecryption(ciphertext, key){
-    
+    var prev = "";
+    var cipher = "";
+
+    blocks.forEach(function(block){
+        var res = "";
+        if(prev.length>0){
+            shiftReg = shiftReg.substring(s,b)+prev;
+            
+        }
+        res = blowfish(shiftReg,key,false);
+        prev = res.substring(0,s);
+        cipher+= init.bin2hex(xor(prev, block));
+    });
+    return cipher;
 }
 
 function encipher(plaintext, key, mode){
@@ -192,7 +209,7 @@ function encipher(plaintext, key, mode){
         return cbcEncryption(plaintext, key);
     }
     else if(mode==='ofb'){
-        return ofbEncryption(plaintext, key);
+        return ofb(plaintext, key);
     }
 }
 
@@ -201,7 +218,7 @@ function decipher(ciphertext, key, mode){
         return cbcDecryption(ciphertext, key);
     }
     else if(mode==='ofb'){
-        return ofbDecryption(ciphertext, key);
+        return ofb(ciphertext, key);
     }
 }
 
