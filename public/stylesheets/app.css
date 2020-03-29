@@ -50,18 +50,18 @@ body{
 
 .git-icon{
     font-size: 3em;
+    margin-bottom: 5px;
 }
 
-a{
-    color: black;
+hr{
+    margin: 0.5em;
 }
 
-a :hover{
+a, a:hover, a:visited{
     color: black;
 }
 
 footer{
-    padding: 8px;
-    /* background-color: rgba(43, 43, 43, 0.726); */
+    padding-bottom: 5px;
     color: black;
 }
