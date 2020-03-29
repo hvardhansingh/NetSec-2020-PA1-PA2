@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(desRoutes);
 app.use(blowfishRoutes);
-// app.use(indexRoutes);
+app.use(indexRoutes);
 
 app.listen(3000, function(){
     console.log('Serving at port 3000 !');

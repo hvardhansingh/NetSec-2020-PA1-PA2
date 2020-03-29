@@ -57,11 +57,17 @@ hr{
     margin: 0.5em;
 }
 
-a, a:hover, a:visited{
+footer a, footer a:hover, footer a:visited{
     color: black;
 }
 
 footer{
     padding-bottom: 5px;
     color: black;
+}
+
+@media only screen and (max-width: 1199px) and (min-width: 768px) {
+    img{
+        width: 50%;
+    }
 }
