@@ -7,6 +7,10 @@
     margin-bottom: 50px;
 }
 
+.navbar .container{
+    margin-bottom: 0;
+}
+
 .allign-center{
     text-align: center;
 }
@@ -45,6 +49,7 @@ h1,h2{
 }
 
 body{
+    padding-top: 80px;
     font-family: 'Open Sans', sans-serif;
 }
 

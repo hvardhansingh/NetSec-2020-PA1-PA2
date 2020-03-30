@@ -1,0 +1,96 @@
+<%- include('../partials/header') %>
+
+<div class="container">
+    <div class="jumbotron">
+        <div class="container text-center">
+            <h1>Encryption Result</h1>
+            <p><em>Encrypted using 
+                <% if(obj.algo==='des'){ %>
+                    <strong>DES</strong>
+                <% }else{ %>
+                    <strong>BLOWFISH</strong>
+                <% } %>
+            </em></p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    Text to Encrypt
+                    <button class="btn btn-primary btn-sm" id="copy-plaintext" style="float: right;">Copy</button>
+                </div>
+                <div class="card-body">
+                    <div id="plaintext">
+                        <%= obj.plaintext %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        Encrypted Text
+                        <button class="btn btn-primary btn-sm" id="copy-ciphertext" style="float: right;">Copy</button>
+                    </div>
+                    <div class="card-body">
+                        <div id="ciphertext">
+                            <%= obj.ciphertext %>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="table-container">
+                <table class="table table-striped border">
+                    <thead>
+                        <tr>
+                            <th scope="col">Round Number</th>
+                            <th scope="col">Subkey</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for(var i=0; i< Math.floor((obj.subkeys.length)/2); i++){ %>
+                        <tr>
+                            <td>Round <%= i+1%> </td>
+                            <td><%= obj.subkeys[i]%></td>
+                        </tr>
+                        <% }; %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <br>
+        <div class="col-md-6">
+            <div class="table-container" style="float: right;">
+                <table class="table table-striped border">
+                    <thead>
+                        <tr>
+                            <th scope="col">Round Number</th>
+                            <th scope="col">Subkey</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for(var i=Math.floor((obj.subkeys.length)/2); i< (obj.subkeys.length); i++){ %>
+                        <tr>
+                            <td>Round <%= i+1%> </td>
+                            <td><%= obj.subkeys[i]%></td>
+                        </tr>
+                        <% }; %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/javascripts/clickToCopy.js"></script>
+
+<%- include('../partials/footer') %>
