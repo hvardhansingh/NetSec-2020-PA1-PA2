@@ -16,8 +16,6 @@ var pc2_32 = [14, 17, 11, 24, 1 , 5 , 3 , 28,
     51, 45, 33, 48, 44, 49, 39, 56,
     34, 53, 46, 42, 50, 36, 29, 32];
 
-
-
 var IP_32 = [
     58, 50, 42, 34, 26, 18, 10, 2, 
     60, 52, 44, 36, 28, 20, 12, 4, 
@@ -137,48 +135,6 @@ var sBoxes_16 = [
 ];
 
 var P_16 = [8, 6, 4, 7, 3, 15, 9, 2, 12, 11, 1, 13, 16, 5, 10, 14];
-
-// var t = [];
-// for(var i=1; i<=64; i++){
-//         t.push(i);
-// }
-
-// // var arr = [];
-// // for(var i=0; i<128; i++){
-// //     arr[t[i]-1] = i+1;
-// // }
-
-// // var arr = [];
-// // while(arr.length < 16){
-// //     var r = Math.floor(Math.random() * 112) + 1;
-// //     if(arr.indexOf(r) === -1) arr.push(r);
-// // }
-
-// // function sortNumber(a, b) {
-// //     return b-a;
-// // }
-
-// // arr.sort(sortNumber);
-// // console.log(arr);
-// // for(var i=0; i<16; i++){
-// //     t.splice(arr[i]-1,1);
-// // }
-
-// // arr.forEach(function(a){
-// //     t.push(a);
-// // });
-
-// console.log(t);
-// t = _.shuffle(t);
-// var ans = "[ ";
-// for(var i=1; i<=64; i++){
-//     ans+= t[i-1];
-//     ans+=", ";
-// }
-// ans+= " ]";
-// console.log(ans);
-
-
 
 //------------------------------w = 64--------------------------------------
 
@@ -302,11 +258,6 @@ pc2.set('32', pc2_32);
 pc2.set('16', pc2_16);
 pc2.set('64', pc2_64);
 
-// var leftShift = new Map();
-// leftShift.set('32',leftShift_32);
-// leftShift.set('16',leftShift_16);
-// leftShift.set('64',leftShift_64);
-
 var IP = new Map();
 IP.set('32',IP_32);
 IP.set('16',IP_16);
@@ -332,12 +283,17 @@ sBoxes.set('32', sBoxes_32);
 sBoxes.set('16', sBoxes_16);
 sBoxes.set('64', sBoxes_64);
 
+var N = 16;
+var padding = 0;
+var rounds = [];
+var leftShift= [1, 1, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 1, 1, 1, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 1];
+var IV = '0000000000000000';
 module.exports = {
-    N: 16,
-    padding: 0,
-    rounds: [],
-    leftShift: [1, 1, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 1, 1, 1, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 1],
-
+    N: N,
+    padding: padding,
+    rounds: rounds,
+    IV: IV,
+    leftShift: leftShift,
     pc1: pc1,
     pc2: pc2,
     IP: IP,

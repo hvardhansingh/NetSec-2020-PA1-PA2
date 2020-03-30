@@ -71,4 +71,8 @@ router.post('/blowfish/decipher', function(req, res){
     res.render('blowfish/decrypt/show', {blowfish: obj});
 });
 
+router.get('/blowfish/compare', function(req, res){
+    res.render('compare/index');
+});
+
 module.exports = router;
