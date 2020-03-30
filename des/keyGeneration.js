@@ -16,10 +16,9 @@ module.exports = {
     generateSubKeys: function generateSubKeys(key, w, n){
     
         var b = key.length-key.length/8;
-        console.log(init);
         
         key = this.permute(key,init.pc1.get(w));
-        // console.log(key);
+
         var leftSubkey = key.substring(0,b/2);
         var rightSubkey = key.substring(b/2,b);
     
