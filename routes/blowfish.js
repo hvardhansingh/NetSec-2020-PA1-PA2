@@ -20,14 +20,14 @@ router.get('/blowfish/encipher', function(req, res){
 router.post('/blowfish/encipher', function(req, res){
     var n = req.body.blowfish.rounds;
     var key = req.body.blowfish.key;
-    var plaintext = req.body.blowfish.ptxt;
+    var plaintext = init.ascii2hex(req.body.blowfish.ptxt);
     var mode = req.body.blowfish.mode;
 
     init.padding = 0;
 
     var subkeys = kg.generateSubkeys(key);
     var ciphertext = encrypt.encipher(plaintext, key, mode);
-
+    
     var obj = {
         key: key,
         subkeys: subkeys,
@@ -51,7 +51,7 @@ router.get('/blowfish/decipher', function(req, res){
 router.post('/blowfish/decipher', function(req, res){
     var n = req.body.blowfish.rounds;
     var key = req.body.blowfish.key;
-    var ciphertext = req.body.blowfish.ctxt;
+    var ciphertext = (req.body.blowfish.ctxt);
     var mode = req.body.blowfish.mode;
 
     var subkeys = kg.generateSubkeys(key);
@@ -60,7 +60,7 @@ router.post('/blowfish/decipher', function(req, res){
     var obj = {
         key: key,
         subkeys: subkeys,
-        plaintext: plaintext,
+        plaintext: init.hex2ascii(plaintext),
         ciphertext: ciphertext
     };
     console.log('===============BLOWFISH=============');

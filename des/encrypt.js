@@ -21,6 +21,12 @@ function hex2bin(str){
     mp.set('D', '1101');
     mp.set('E', '1110');
     mp.set('F', '1111');
+    mp.set('a', '1010');
+    mp.set('b', '1011');
+    mp.set('c', '1100');
+    mp.set('d', '1101');
+    mp.set('e', '1110');
+    mp.set('f', '1111');
     var bin = "";
     for(var i=0; i<str.length; i++){
         bin+= mp.get(str[i]);
@@ -86,12 +92,9 @@ function makeBlocks(plainText, w){
     var ret = [];
 
     for(var i=0; i<N; i+=m){
-        console.log(i);
-        console.log(Math.min(i+m,N));
 
         var str = plainText.substring(i,Math.min(i+m, N));
 
-        console.log(str);
         if(str.length === m){
             ret.push(str);
         }

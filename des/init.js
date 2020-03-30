@@ -288,6 +288,36 @@ var padding = 0;
 var rounds = [];
 var leftShift= [1, 1, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 1, 1, 1, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 1];
 var IV = '0000000000000000';
+
+// function ascii2hex(str){
+//     var hex = "";
+
+//     for(var i=0; i<str.length; i++){
+//         hex+= (str.charCodeAt(i)).toString(16);
+//     }
+//     return hex;
+// }
+
+function ascii2hex(str)
+{
+	var arr1 = [];
+	for (var n = 0, l = str.length; n < l; n ++) 
+     {
+		var hex = Number(str.charCodeAt(n)).toString(16);
+		arr1.push(hex);
+	 }
+	return arr1.join('');
+}
+
+function hex2ascii(str)
+ {
+	var ascii = '';
+	for (var n = 0; n < str.length; n += 2) {
+		ascii += String.fromCharCode(parseInt(str.substr(n, 2), 16));
+	}
+	return ascii;
+}
+
 module.exports = {
     N: N,
     padding: padding,
@@ -300,5 +330,7 @@ module.exports = {
     invIP: invIP,
     EP: EP,
     P: P,
-    sBoxes: sBoxes
+    sBoxes: sBoxes,
+    ascii2hex: ascii2hex,
+    hex2ascii: hex2ascii
 };

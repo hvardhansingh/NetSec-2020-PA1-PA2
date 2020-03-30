@@ -277,6 +277,24 @@ function bin2hex(str) {
     return hex;
 }
 
+function ascii2hex(str){
+    var hex = "";
+
+    for(var i=0; i<str.length; i++){
+        hex+= (str.charCodeAt(i)).toString(16);
+    }
+    return hex;
+}
+
+function hex2ascii(str)
+ {
+	var ascii = '';
+	for (var n = 0; n < str.length; n += 2) {
+		ascii += String.fromCharCode(parseInt(str.substr(n, 2), 16));
+	}
+	return ascii;
+}
+
 var exp = {
     N: N,
     padding: padding,
@@ -284,6 +302,8 @@ var exp = {
     sBox: sBox,
     hex2bin: hex2bin,
     bin2hex: bin2hex,
+    ascii2hex: ascii2hex,
+    hex2ascii: hex2ascii,
     IV: IV
 };
 

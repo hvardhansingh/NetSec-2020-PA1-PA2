@@ -17,7 +17,8 @@ router.post('/des/encipher', function(req, res){
     var n = req.body.des.rounds;
     var mode = req.body.des.mode;
     var key = req.body.des.key;
-    var ptxt = req.body.des.ptxt;
+    var ptxt = init.ascii2hex(req.body.des.ptxt);
+    // var ptxt = req.body.des.ptxt;
 
     init.padding = 0;
 
@@ -62,7 +63,8 @@ router.post('/des/decipher', function(req, res){
         key: key,
         subkeys: subkeys,
         ctxt: ctxt,
-        ptxt: ptxt
+        ptxt: init.hex2ascii(ptxt)
+        // ptxt: ptxt
     };
 
     res.render('des/decrypt/show', {des: des});
