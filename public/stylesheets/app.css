@@ -71,3 +71,11 @@ footer{
         width: 50%;
     }
 }
+
+textarea{
+    resize: vertical;
+}
+
+.card{
+    margin-bottom: 2em;
+}

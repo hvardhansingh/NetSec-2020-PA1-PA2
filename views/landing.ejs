@@ -2,54 +2,82 @@
 
 <div class="container">
     <div class="jumbotron">
-        <div class="container">
-            <h1>Network Security 2020</h1>
+        <div class="container text-center">
+            <h1>Network Security (CSE-537), 2020</h1>
             <h4><em>Spring Semester Assignment</em></h4>
         </div>
     </div>
 
     <div class="row">
-        <div class="col-md-12">
-            <div class="thumbnail" style="padding: 0; border: 0;">
-                <img src="https://imgs.xkcd.com/comics/identity.png" alt="" >
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header" style="background-color: rgba(228, 0, 0, 0.5); color: white;">
+                    <h2>Encryption</h2>
+                </div>
+                <div class="card-body" style="background-color: rgba(235, 154, 154, 0.288)">
+                    <h5>
+                        Encrypt your data using different encryption algorithms. You can choose :
+                        <ul>
+                            <li>Number of Rounds</li>
+                            <li>Encryption Algorithm</li>
+                            <li>Key</li>
+                            <li>Mode of Operation</li>
+                        </ul>
+                    </h5>
+                    <div class="text-center">
+                        <a href="/des/encipher" class="btn btn-danger btn-lg">Encrypt</a>
+                    </div>
+                </div>
             </div>
         </div>
-        
-    </div>
 
-    <div class="row">
-        <div class="col-md-12">
-            <p>
-                <div class="container" style="width: fit-content; padding: 1em; ">
-                    
-                    <h4 style="font-size: 2em ;">
-                        Choose the encryption algorithm you want to explore
-                    </h4>   
-                    <br>
-
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="thumbnail text-center" style="padding: 0;">
-                                <a class="btn btn-success" style="width: 100%;" href="/des">DES</a>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="thumbnail text-center" style="padding: 0;">
-                                <a class="btn btn-success" style="width: 100%;" href="/blowfish">Blowfish</a>                
-                            </div>
-                        </div>
-                    </div>
-                    
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header" style="background-color: rgba(0, 145, 0, 0.637); color: white;">
+                    <h2>Decryption</h2>
                 </div>
-                
-            </p>
+                <div class="card-body" style="background-color: rgba(129, 216, 129, 0.233);">
+                    <h5>
+                        Decrypt your data using different encryption algorithms. You have to choose :
+                        <ul>
+                            <li>Number of Rounds</li>
+                            <li>Encryption Algorithm</li>
+                            <li>Key</li>
+                            <li>Mode of Operation</li>
+                        </ul>
+                    </h5>
+                    <div class="text-center">
+                        <a href="/des/decipher" class="btn btn-success btn-lg">Decrypt</a>
+                    </div>
+                </div>
+            </div>
         </div>
+
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header" style="background-color: rgba(255, 196, 0, 0.61); color: white;">
+                    <h2>Avalanche Effect</h2>
+                </div>
+                <div class="card-body" style="background-color: rgba(233, 233, 140, 0.281);">
+                    <h5>
+                        See the effect of slight change in key/plaintext on the ciphertext. You have to enter:
+                        <ul>
+                            <li>Number of Rounds</li>
+                            <li>Encryption Algorithm</li>
+                            <li>Key</li>
+                            <li>Mode of Operation</li>
+                            <!-- add here buttons to select diff ptxt of diff keys -->
+                        </ul>
+                    </h5>
+                    <div class="text-center">
+                        <a href="/des/compare" class="btn btn-warning btn-lg" style="color: white;">See Demo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
-
-    
-
 </div>
 
 
 <%- include('partials/footer') %>
-

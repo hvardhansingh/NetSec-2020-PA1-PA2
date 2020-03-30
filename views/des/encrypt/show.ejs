@@ -1,64 +1,90 @@
 <%- include('../../partials/header') %>
 
-    <div class="container">
-        <div class="jumbotron">
-            <div class="container">
-                <h1>Encryption Result</h1>
-                <p>
-                    <h4>Plaintext: <%= des.ptxt %></h4>
-                </p>
-                <p>
-                    <h4>Key: <%= des.key %></h4>
-                </p>
-                <p>
-                    <h4><mark>Ciphertext: <%= des.ctxt%></mark></h4>
-                </p>
-            </div>
+<div class="container">
+    <div class="jumbotron">
+        <div class="container text-center">
+            <h1>Encryption Result</h1>
+            <p><em>Encrypted using <strong>DES</strong></em></p>
         </div>
-        
-        <div class="row">
-            <div class="col-md-6">
-                <div class="table-container">
-                    <table class="table table-striped border">
-                        <thead>
-                            <tr>
-                                <th scope="col">Round Number</th>
-                                <th scope="col">Subkey</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <% for(var i=0; i< Math.floor((des.subkeys.length)/2); i++){ %>
-                                <tr>
-                                    <td>Round <%= i+1%> </td>
-                                    <td><%= des.subkeys[i]%></td>
-                                </tr>
-                            <% }; %>
-                        </tbody>
-                    </table>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    Plaintext
+                    <button class="btn btn-primary btn-sm" id="copy-plaintext" style="float: right;">Copy</button>
                 </div>
-            </div>
-            
-            <div class="col-md-6">
-                <div class="table-container" style="float: right;">
-                    <table class="table table-striped border">
-                        <thead>
-                            <tr>
-                                <th scope="col">Round Number</th>
-                                <th scope="col">Subkey</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <% for(var i=Math.floor((des.subkeys.length)/2); i< (des.subkeys.length); i++){ %>
-                                <tr>
-                                    <td>Round <%= i+1%> </td>
-                                    <td><%= des.subkeys[i]%></td>
-                                </tr>
-                            <% }; %>
-                        </tbody>
-                    </table>
+                <div class="card-body">
+                    <div id="plaintext">
+                        <%= des.ptxt%>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <br>
+    <div class="row">
+        <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        Ciphertext
+                        <button class="btn btn-primary btn-sm" id="copy-ciphertext" style="float: right;">Copy</button>
+                    </div>
+                    <div class="card-body">
+                        <div id="ciphertext">
+                            <%= des.ctxt%>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="table-container">
+                <table class="table table-striped border">
+                    <thead>
+                        <tr>
+                            <th scope="col">Round Number</th>
+                            <th scope="col">Subkey</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for(var i=0; i< Math.floor((des.subkeys.length)/2); i++){ %>
+                        <tr>
+                            <td>Round <%= i+1%> </td>
+                            <td><%= des.subkeys[i]%></td>
+                        </tr>
+                        <% }; %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <br>
+        <div class="col-md-6">
+            <div class="table-container" style="float: right;">
+                <table class="table table-striped border">
+                    <thead>
+                        <tr>
+                            <th scope="col">Round Number</th>
+                            <th scope="col">Subkey</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for(var i=Math.floor((des.subkeys.length)/2); i< (des.subkeys.length); i++){ %>
+                        <tr>
+                            <td>Round <%= i+1%> </td>
+                            <td><%= des.subkeys[i]%></td>
+                        </tr>
+                        <% }; %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/javascripts/clickToCopy.js"></script>
 
 <%- include('../../partials/footer') %>

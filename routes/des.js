@@ -33,7 +33,7 @@ router.post('/des/encipher', function(req, res){
     var des = {
         key: key,
         subkeys: subkeys,
-        ptxt: ptxt,
+        ptxt: init.hex2ascii(ptxt),
         ctxt: ciphertext
     };
     
