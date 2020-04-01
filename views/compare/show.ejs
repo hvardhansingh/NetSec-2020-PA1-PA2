@@ -2,36 +2,106 @@
     <% console.log(des.delta); %>
     <div class="container">
         <div class="jumbotron">
-            <div class="container">
+            <div class="container text-center">
                 <h1>Avalanche Effect Demo</h1>
-                <br>
+                
+            </div>
+        </div>
 
-                <% if(des.ptxt1){ %>
-                    <h4>Plaintext 1: <%= des.ptxt1 %></h4>
-                <% } %>
-                <% if(des.ptxt2){ %>
-                    <h4>Plaintext 2: <%= des.ptxt2 %></h4>  
-                <% } %>
-                <% if(des.ptxt){ %>
-                    <h4>Plaintext: <%= des.ptxt %></h4>  
-                <% } %>
+        <% if(des.ptxt1){ %>
+            <div class="card">
+                <div class="card-header">
+                    <h5>Plaintext1</h5>
+                </div>
+                <div class="card-body">
+                    <h5><%= des.ptxt1 %></h5>
+                </div>
+            </div>
+        <% } %>
 
-                <% if(des.key1){ %>
-                    <h4>Key1: <%= des.key1 %></h4>
-                <% } %>
-                <% if(des.key2){ %>
-                    <h4>Key2: <%= des.key2 %></h4>  
-                <% } %>
-                <% if(des.key){ %>
-                    <h4>Key: <%= des.key %></h4>  
-                <% } %>
-            
-                <h4><mark>Ciphertext 1: <%= des.ctxt1%></mark></h4>
-                <h4><mark>Ciphertext 2: <%= des.ctxt2%></mark></h4>
-                <br>
+        <% if(des.ptxt2){ %>
+            <div class="card">
+                <div class="card-header">
+                    <h5>Plaintext2</h5>
+                </div>
+                <div class="card-body">
+                    <h5><%= des.ptxt2 %></h5>
+                </div>
+            </div>
+        <% } %>
+        
+        <% if(des.ptxt){ %>
+            <div class="card">
+                <div class="card-header">
+                    <h5>Plaintext</h5>
+                </div>
+                <div class="card-body">
+                    <h5><%= des.ptxt %></h5>
+                </div>
+            </div>
+        <% } %>
+
+        <% if(des.key){ %>
+            <div class="card">
+                <div class="card-header">
+                    <h5>Key</h5>
+                </div>
+                <div class="card-body">
+                    <h5><%= des.key %></h5>
+                </div>
+            </div>
+        <% } %>
+
+        <% if(des.key1){ %>
+            <div class="card">
+                <div class="card-header">
+                    <h5>Key1</h5>
+                </div>
+                <div class="card-body">
+                    <h5><%= des.key1 %></h5>
+                </div>
+            </div>
+        <% } %>
+
+        <% if(des.key2){ %>
+            <div class="card">
+                <div class="card-header">
+                    <h5>Key2</h5>
+                </div>
+                <div class="card-body">
+                    <h5><%= des.key2 %></h5>
+                </div>
+            </div>
+        <% } %>
+
+        <div class="card">
+            <div class="card-header">
+                <h5>Ciphertext1</h5>
+            </div>
+            <div class="card-body">
+                <h5><%= des.ctxt1 %></h5>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h5>Ciphertext2</h5>
+            </div>
+            <div class="card-body">
+                <h5><%= des.ctxt2 %></h5>
+            </div>
+        </div>
+
+        
+        <div class="card">
+            <div class="card-header">
+                <h5>Plot</h5> 
+            </div>
+            <div class="card-body">
                 <div id="chartContainer" style="height: 300px; width: 100%;"></div>
             </div>
         </div>
+      
 
         <div class="row">
             <div class="col-md-6">
@@ -107,7 +177,11 @@
                 text: "Avalanche Demo"
             },
             axisY: {
-                includeZero: false
+                includeZero: false,
+                title: "Delta"
+            },
+            axisX: {
+                title: "Round Number"
             },
             data: [{
                 type: "line",

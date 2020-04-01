@@ -110,7 +110,7 @@ function makeBlocks(plainText, w){
     return ret;
 }
 
-function DES(block, key, n, flg){
+function DES(block, key, n, flg, roundCipher){
     
     var b = block.length;
     init.rounds = [];
@@ -127,7 +127,11 @@ function DES(block, key, n, flg){
     var leftHalf = block.substring(0,b/2);
     var rightHalf = block.substring(b/2, b);
     
-    init.rounds.push(leftHalf+rightHalf);
+    // init.rounds.push(leftHalf+rightHalf);
+    if(!flg){
+        roundCipher.push(leftHalf+rightHalf);
+    }
+    
 
     for(var j=0; j<n; j++){
 
@@ -160,7 +164,10 @@ function DES(block, key, n, flg){
             leftHalf = rightHalf;
             rightHalf = t;
         }    
-        init.rounds.push(leftHalf+rightHalf);
+        // init.rounds.push(leftHalf+rightHalf);
+        if(!flg){
+            roundCipher.push(leftHalf+rightHalf);
+        }
     }
 
     var cipher = leftHalf+rightHalf;
@@ -168,7 +175,7 @@ function DES(block, key, n, flg){
     return cipher;
 }
 
-function cbcEncryption(plaintext, key, n){
+function cbcEncryption(plaintext, key, n, roundCipher){
     plaintext = hex2bin(plaintext);
     var blocks = makeBlocks(plaintext, 32); 
 
@@ -186,13 +193,13 @@ function cbcEncryption(plaintext, key, n){
             block = XOR(block, IV);
         }
 
-        prev = DES(block, key, n, false);
+        prev = DES(block, key, n, false, roundCipher);
         cipher+= bin2hex(prev);
     });
     return cipher;
 }
 
-function cbcDecryption(ciphertext,key,n){
+function cbcDecryption(ciphertext,key,n, roundCipher){
     
     ciphertext = hex2bin(ciphertext);
     var blocks = makeBlocks(ciphertext, 32); 
@@ -204,7 +211,7 @@ function cbcDecryption(ciphertext,key,n){
 
     blocks.forEach(function(block){
     
-        var res = DES(block, key, n, true);
+        var res = DES(block, key, n, true, roundCipher);
         if(prev.length>0){
             res = XOR(res, prev);
         }
@@ -221,7 +228,7 @@ function cbcDecryption(ciphertext,key,n){
     return ptxt;
 }
 
-function ofb(plaintext, key, n, flg){
+function ofb(plaintext, key, n, flg, roundCipher){
     var s = 8;
     var b = 64;
 
@@ -239,7 +246,7 @@ function ofb(plaintext, key, n, flg){
             shiftReg = shiftReg.substring(s,b)+prev;
             
         }
-        res = DES(shiftReg, key, n, false);
+        res = DES(shiftReg, key, n, false,roundCipher);
         prev = res.substring(0,s);
         cipher+= XOR(prev, block);
     });
@@ -252,21 +259,22 @@ function ofb(plaintext, key, n, flg){
     return cipher;
 }
 
-function encipher(plaintext, key, n, mode){
+function encipher(plaintext, key, n, mode, roundCipher){
     if(mode==='cbc'){
-        return cbcEncryption(plaintext,key,n);
+        return cbcEncryption(plaintext,key,n, roundCipher);
     }
     else{
-        return ofb(plaintext,key,n,false);
+        return ofb(plaintext,key,n,false,roundCipher);
     }
 }
 
 function decipher(ciphertext, key, n, mode){
+    var roundCipher = [];
     if(mode==='cbc'){
-        return cbcDecryption(ciphertext,key,n);
+        return cbcDecryption(ciphertext,key,n,roundCipher);
     }
     else{
-        return ofb(ciphertext,key,n,true)
+        return ofb(ciphertext,key,n,true,roundCipher)
     }
 }
 
@@ -274,7 +282,8 @@ var obj = {
     encipher: encipher,
     decipher: decipher,
     bin2hex: bin2hex,
-    hex2bin: hex2bin
+    hex2bin: hex2bin,
+    XOR: XOR
 }; 
 
 module.exports = obj;

@@ -55,27 +55,34 @@
 
         <div class="col-md-4">
             <div class="card">
-                <div class="card-header text-center" style="background-color: rgba(235, 180, 0, 0.61); color: white;">
+                <div class="card-header text-center bg-warning" style="color: white;">
                     <h2>Avalanche Effect</h2>
                 </div>
                 <div class="card-body" style="background-color: rgba(233, 233, 140, 0.281);">
                     <h5>
-                        See the effect of slight change in key/plaintext on the ciphertext. You have to enter:
-                        <ul>
+                        See the effect of slight change in key/plaintext on the ciphertext. Select any one of the below modes :
+                        <!-- <ul>
                             <li>Number of Rounds</li>
                             <li>Encryption Algorithm</li>
                             <li>Key</li>
                             <li>Mode of Operation</li>
-                            <!-- add here buttons to select diff ptxt of diff keys -->
-                        </ul>
+                        </ul> -->
                     </h5>
-                    <div class="text-center">
-                        <a href="/compare" class="btn btn-warning btn-lg" style="color: white;">See Demo</a>
+
+                    <div class="row margin">
+                        <div class="col-sm-12">
+                            <a href="/compare/keys" class="btn btn-warning btn-block btn-lg  text-white">Use different keys</a>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <a href="/compare/plaintexts" class="btn btn-warning btn-block btn-lg  text-white">Use different plaintexts</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
 </div>
 

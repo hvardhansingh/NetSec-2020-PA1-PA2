@@ -83,16 +83,19 @@ function F(block) {          // coded for half width = 32
     return out;
 }
 
-function blowfish(block, key, flg) {
+function blowfish(block, key, n, flg, roundCipher) {
 
-    var n = 16;
     var cipher = "";
-
     var b = block.length;
     var leftHalf = block.substring(0, b / 2);
     var rightHalf = block.substring(b / 2, b);
 
+    if(flg===false){
+        roundCipher.push(leftHalf+rightHalf);
+    }
+
     var subkeys = keyGeneration.generateSubkeys(key);
+    subkeys = subkeys.slice(0,n+2);
 
     for (var i = 0; i < subkeys.length; i++) {
         subkeys[i] = init.hex2bin(subkeys[i]);
@@ -111,14 +114,18 @@ function blowfish(block, key, flg) {
         var l = leftHalf;
         leftHalf = rightHalf;
         rightHalf = l;
+
+        if(flg===false){
+            roundCipher.push(leftHalf+rightHalf);
+        }
     }
 
     var lh = leftHalf;
     leftHalf = rightHalf;
     rightHalf = lh;
 
-    rightHalf = xor(rightHalf, subkeys[16]);
-    leftHalf = xor(leftHalf, subkeys[17]);
+    rightHalf = xor(rightHalf, subkeys[Number(n)]);
+    leftHalf = xor(leftHalf, subkeys[Number(n)+1]);
 
     cipher += leftHalf;
     cipher += rightHalf;
@@ -126,7 +133,7 @@ function blowfish(block, key, flg) {
     return cipher;
 }
 
-function cbcEncryption(plaintext, key){
+function cbcEncryption(plaintext, key, n, roundCipher){
 
     plaintext = init.hex2bin(plaintext);
     var blocks = makeBlocks(plaintext, 32); 
@@ -145,14 +152,14 @@ function cbcEncryption(plaintext, key){
             block = xor(block, IV);
         }
 
-        prev = blowfish(block, key, false);
+        prev = blowfish(block, key, n, false, roundCipher);
         cipher+= init.bin2hex(prev);
     });
 
     return cipher;
 }
 
-function cbcDecryption(ciphertext, key){
+function cbcDecryption(ciphertext, key, n){
 
     ciphertext = init.hex2bin(ciphertext);
     var blocks = makeBlocks(ciphertext, 32); 
@@ -164,7 +171,7 @@ function cbcDecryption(ciphertext, key){
 
     blocks.forEach(function(block){
     
-        var res = blowfish(block, key, true);
+        var res = blowfish(block, key, n, true);
         if(prev.length>0){
             res = xor(res, prev);
         }
@@ -181,12 +188,14 @@ function cbcDecryption(ciphertext, key){
     return ptxt;
 }
 
-function ofb(plaintext, key, flg){
+function ofb(plaintext, key, n, flg, roundCipher){
+
     var s = 8;
     var b = 64;
 
     plaintext = init.hex2bin(plaintext);
     var blocks = makeBlocks(plaintext, 4); 
+    
     var IV = init.hex2bin(init.IV); 
     var shiftReg = IV;
 
@@ -199,39 +208,69 @@ function ofb(plaintext, key, flg){
             shiftReg = shiftReg.substring(s,b)+prev;
             
         }
-        res = blowfish(shiftReg,key,false);
+        res = blowfish(shiftReg,key,n,false, roundCipher);
         prev = res.substring(0,s);
-        cipher+= init.bin2hex(xor(prev, block));
+        cipher+= xor(prev, block);
     });
 
     if(flg){
+        console.log("padding : "+init.padding);
         cipher = cipher.substring(0, cipher.length-init.padding);
-        cipher = init.bin2hex(cipher);
     }
+
+    cipher = init.bin2hex(cipher);
 
     return cipher;
 }
 
-function encipher(plaintext, key, mode){
+// function ofb(plaintext, key, n, flg, roundCipher){
+//     var s = 8;
+//     var b = 64;
+
+//     plaintext = init.hex2bin(plaintext);
+//     var blocks = makeBlocks(plaintext, 4); 
+//     var IV = init.hex2bin(init.IV); 
+//     var shiftReg = IV;
+
+//     var prev = "";
+//     var cipher = "";
+
+//     blocks.forEach(function(block){
+//         var res = "";
+//         if(prev.length>0){
+//             shiftReg = shiftReg.substring(s,b)+prev;
+            
+//         }
+//         // res = blowfish(shiftReg,key,n, false, roundCipher);
+//         res = blowfish(shiftReg,key,n, flg, roundCipher);
+//         prev = res.substring(0,s);
+//         cipher+= init.bin2hex(xor(prev, block));
+//     });
+//     return cipher;
+// }
+
+function encipher(plaintext, key, n, mode, roundCipher){
 
     if(mode==='cbc'){
-        return cbcEncryption(plaintext, key);
+        return cbcEncryption(plaintext, key, n, roundCipher);
     }
     else if(mode==='ofb'){
-        return ofb(plaintext, key, false);
+        return ofb(plaintext, key, n, false, roundCipher);
     }
 }
 
-function decipher(ciphertext, key, mode){
+function decipher(ciphertext, key, n, mode){
     if(mode==='cbc'){
-        return cbcDecryption(ciphertext, key);
+        return cbcDecryption(ciphertext, key, n);
     }
     else if(mode==='ofb'){
-        return ofb(ciphertext, key, true);
+        var roundCipher = [];
+        return ofb(ciphertext, key, n, true, roundCipher);
     }
 }
 
 var obj = {
+    xor: xor,
     encipher: encipher,
     decipher: decipher
 };  
