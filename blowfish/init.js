@@ -296,7 +296,12 @@ function hex2ascii(str)
  {
 	var ascii = '';
 	for (var n = 0; n < str.length; n += 2) {
-		ascii += String.fromCharCode(parseInt(str.substr(n, 2), 16));
+        if(str.substr(n, 2)==="da"){
+            ascii+= "<br>";
+        }
+        else{
+            ascii += String.fromCharCode(parseInt(str.substr(n, 2), 16));
+        }
 	}
 	return ascii;
 }

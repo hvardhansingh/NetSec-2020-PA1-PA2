@@ -23,7 +23,6 @@ router.get('/encipher', function(req, res){
 
 router.post('/encipher', function(req, res){
     var n = Number(req.body.rounds);
-    console.log(n+" "+typeof(n));
     var key = req.body.key;
     var plaintext = initBlowfish.ascii2hex(req.body.ptxt);
     var algo = req.body.algo;
