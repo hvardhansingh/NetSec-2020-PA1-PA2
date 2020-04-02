@@ -296,7 +296,7 @@ function hex2ascii(str)
  {
 	var ascii = '';
 	for (var n = 0; n < str.length; n += 2) {
-        if(str.substr(n, 2)==="da"){
+        if(str.substr(n, 2)==="da" || str.substr(n, 2)==="DA"){
             ascii+= "<br>";
         }
         else{
